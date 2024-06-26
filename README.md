@@ -7,6 +7,8 @@ Pytorch 1.7
 timm 0.4.5
 numpy 1.21.6
 scikit-learn 1.0.2
+imageio 2.31.2
+pydub 0.25.1
 ```
 ## Download Datasets
 Please download the datasets from [Google Drive] and save them into the `data` folder.
