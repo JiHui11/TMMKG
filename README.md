@@ -14,5 +14,11 @@ Please download the datasets from [Google Drive] and save them into the `data` f
 ### 1 Semantic Alignment
 ```
 cd SemAlign
-python ave.py --train python ave.py --train --threshold 0.095
+python ave.py --train --threshold=0.095
+```
+### 2. TMMKG Generation
+```
+cd TMMKG-Gen
+# Training TMMKG Generation
+python tva-triplets.py --status train --kgc_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
