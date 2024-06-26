@@ -28,4 +28,3 @@ python tva-triplets.py --status train --kgc_mode three_modality --threshold=0.09
 ```
 python tva-triplets.py --status test --kgc_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
-```
