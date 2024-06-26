@@ -10,7 +10,7 @@ from alignment import alignment_triples_vat, alignment_triples_va, alignment_tri
 import warnings
 warnings.filterwarnings("ignore")
 
-parser = argparse.ArgumentParser(description='MMKG_KGC')
+parser = argparse.ArgumentParser(description='MMKG_generation')
 parser.add_argument('--dir_video', type=str, default="../data/visual_feature.pkl", help='visual features')
 parser.add_argument('--dir_audio', type=str, default='../data/audio_feature.pkl', help='audio features')
 parser.add_argument('--dir_labels', type=str, default='../data/label.pkl', help='labels of dataset')
@@ -33,7 +33,7 @@ parser.add_argument('--train_visual_triples_dir', type=str, default='../data/tra
 parser.add_argument('--test_visual_triples_dir', type=str, default='../data/test_video_triples.json', help="File path to the JSON containing visual triples for testing phase.")
 parser.add_argument('--gt_triples_dir', type=str, default='../data/ground_truth.json')
 
-parser.add_argument('--kgc_mode', type=str, default='two_modality', help="the mode of kgc")
+parser.add_argument('--kgg_mode', type=str, default='two_modality', help="the mode of kg generation")
 parser.add_argument('--type_two_mode', type=str, default='vt', help="the types of two modalities formed by combining the three modalities pairwise")
 
 parser.add_argument('--glove_file_path', type=str, default='../data/glove.6B.300d.txt', help="the path of glove")
@@ -125,14 +125,14 @@ def extract_dynamic_knowledge_graph(filename_a, filename_v, selected_time_segmen
                                                                               args.videos_dir, all_visual_triples,
                                                                               all_gt_triples)
 
-    if args.kgc_mode == "one_modality":
+    if args.kgg_mode == "one_modality":
         all_triples = visual_triples
-    elif args.kgc_mode == "two_modality":
+    elif args.kgg_mode == "two_modality":
         if args.type_two_mode == 'vt':
             all_triples = alignment_triples_vt(args, text_triplets, visual_triples, word_embeddings)
         elif args.type_two_mode == 'va':
             all_triples = alignment_triples_va(args, audio_labels, visual_triples, word_embeddings, segment_indices_list)
-    elif args.kgc_mode == "three_modality":
+    elif args.kgg_mode == "three_modality":
         all_triples = alignment_triples_vat(args, text_triplets, audio_labels, visual_triples, word_embeddings, segment_indices_list)
     return all_triples, gt_triples
 
