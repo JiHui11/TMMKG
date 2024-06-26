@@ -19,6 +19,8 @@ python ave.py --train --threshold=0.095
 ### 2. TMMKG Generation
 ```
 cd TMMKG-Gen
-- Training TMMKG Generation
+* Training TMMKG Generation
 python tva-triplets.py --status train --kgc_mode three_modality --threshold=0.095 --entity_threshold=0.40
+* Testing TMMKG Generation
+python tva-triplets.py --status test --kgc_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
