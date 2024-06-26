@@ -34,9 +34,9 @@ cd TMMLP
 ```
 * Train:
 ```
-python fully_supervised_main.py --model_name PSP --threshold=0.099 --train
+python main.py --train --nb_epoch=30
 ```
 * Test:
 ```
-CUDA_VISIBLE_DEVICES=0 python fully_supervised_main.py --model_name PSP --threshold=0.099 --trained_model_path ./model/PSP_fully.pt
+python main.py --model_path ./kgc_models/best_model.tar
 ```
