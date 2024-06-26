@@ -50,10 +50,10 @@ torch.backends.cudnn.deterministic = True
 
 
 def generate_TMMKG(args, net_model):
-    Data_train = Dataset(video_dir=args.dir_video, audio_dir=args.dir_audio, batch_size=args.batch_size, label_dir=args.dir_labels,
+    Data = Dataset(video_dir=args.dir_video, audio_dir=args.dir_audio, batch_size=args.batch_size, label_dir=args.dir_labels,
                         order_dir=args.dir_order_test, status=args.status) # Status of the dataset, can be 'train' or 'test'
 
-    nb_batch = Data_train.__len__() // args.batch_size  
+    nb_batch = Data.__len__() // args.batch_size  
 
     # Read visual triples from JSON file
     # Use args.test_visual_triples_dir for testing and args.train_visual_triples_dir for training
