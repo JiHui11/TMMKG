@@ -29,7 +29,6 @@ parser.add_argument('--dir_order_test', type=str, default='./data/test_set.pkl',
 
 parser.add_argument('--nb_epoch', type=int, default=300,  help='number of epoch')
 parser.add_argument('--batch_size', type=int, default=100, help='number of batch size')
-parser.add_argument('--save_epoch', type=int, default=1, help='number of epoch for saving models')
 parser.add_argument('--LAMBDA', type=float, default=100, help='weight for balancing losses')
 parser.add_argument('--threshold', type=float, default=0.095, help='key-parameter for pruning process')
 parser.add_argument('--check_epoch', type=int, default=5, help='number of epoch for checking accuracy of current models during training')
@@ -55,7 +54,7 @@ torch.backends.cudnn.deterministic = True
 def train(args, net_model, optimizer):
     Data = Dataset(video_dir=args.dir_video, audio_dir=args.dir_audio, batch_size=args.batch_size, label_dir=args.dir_labels,
                         order_dir=args.dir_order_train, status='train')
-    nb_batch = Data.__len__() // args.batch_size  # 完整遍历整个数据集需要几个批次
+    nb_batch = Data.__len__() // args.batch_size  
     print('nb_batch:', nb_batch)
     epoch_l = []
     best_test_acc = 0
@@ -71,7 +70,7 @@ def train(args, net_model, optimizer):
             # all_out_probs = []
             all_pred = []
             all_labels = []
-            audio, video, labels, segment_label, segment_avps_gt, labels_bg = Data.get_batch(i, SHUFFLE_SAMPLES) # 得到一个批次的数据
+            audio, video, labels, segment_label, segment_avps_gt, labels_bg = Data.get_batch(i, SHUFFLE_SAMPLES)
             SHUFFLE_SAMPLES = False
             loss_cls = 0
             loss_avps = 0
@@ -90,8 +89,8 @@ def train(args, net_model, optimizer):
 
                 segment_label_batch = torch.from_numpy(segment_label[n]).long().unsqueeze(0).cuda()
                 count_list = []
-                count_bg = torch.sum(segment_label_batch == 36).item()  # 计算背景为36的计数
-                count_event = torch.sum(segment_label_batch != 36).item()  # 计算非背景的事件计数
+                count_bg = torch.sum(segment_label_batch == 36).item()  
+                count_event = torch.sum(segment_label_batch != 36).item() 
                 count_list.append([count_bg, count_event])
 
                 segment_avps_gt_batch = torch.from_numpy(segment_avps_gt[n]).float().unsqueeze(0).cuda()
@@ -125,14 +124,7 @@ def train(args, net_model, optimizer):
 
         print("=== Epoch {%s}   lr: {%.6f} | Loss: [{%.4f}] loss_cls: [{%.4f}] | loss_frame: [{%.4f}] | training_acc {%.4f}" \
             % (str(epoch), optimizer._optimizer.param_groups[0]['lr'], (epoch_loss) / n, epoch_loss_cls/n, epoch_loss_avps/n, acc))
-
-        # if epoch % args.save_epoch == 0 and epoch != 0:
-        #     val_acc = val(args, net_model)
-        #     print('val accuracy:', val_acc, 'epoch=', epoch)
-        #     if val_acc >= best_val_acc:
-        #         best_val_acc = val_acc
-        #         print('best val accuracy:', best_val_acc)
-        #         print('best val accuracy: {} ***************************************'.format(best_val_acc))
+        
         if epoch % args.check_epoch == 0 and epoch != 0:
             test_acc = test(args, net_model)
             print('test accuracy:', test_acc, 'epoch=', epoch)
@@ -141,42 +133,9 @@ def train(args, net_model, optimizer):
                 best_epoch = epoch
                 print('best test accuracy: {} ======================================='.format(best_test_acc))
                 model_file = os.path.join(args.sav_dir, model_name + "_" + str(epoch) + "_fully.pt")
-        # 保存模型
                 torch.save(net_model, model_file)
     # print('[best val accuracy]: ', best_val_acc)
     print('[best test accuracy]: ', best_test_acc)
-
-
-
-# def val(args, net_model):
-#     net_model.eval()
-#     AVEData = Dataset(video_dir=args.dir_video, audio_dir=args.dir_audio, label_dir=args.dir_labels,
-#                         order_dir=args.dir_order_val, batch_size=400, status='val')
-#     nb_batch = AVEData.__len__()
-#     audio_inputs, video_inputs, labels, _, _ = AVEData.get_batch(0)
-#     all_labels = []
-#     all_out_probs = []
-#     for n in range(400):
-#         keys_video = list(video_inputs.keys())
-#         keys_auido = list(audio_inputs.keys())
-#         filename_a = keys_auido[n]
-#         filename_v = keys_video[n]
-#         audio_input = torch.from_numpy(audio_inputs[filename_a]).float().unsqueeze(0).cuda()  # [1,t,128]
-#         video_input = torch.from_numpy(video_inputs[filename_v]).float().unsqueeze(0).cuda()  # [1,t,7,7,512]
-#         label = torch.from_numpy(labels[n]).float().unsqueeze(0).cuda()  # [1,t,37]
-#         all_labels.append(label)
-#         fusion, out_prob, cross_att, _ = net_model(audio_input, video_input, args.threshold)
-#         all_out_probs.append(out_prob)
-#
-#     acc = 0
-#     for i in range(400):
-#         labels = all_labels[i].cpu().data.numpy()
-#         x_labels = all_out_probs[i].cpu().data.numpy()
-#         acc += compute_acc(labels, x_labels, 1)
-#     acc /= 400
-#
-#     print('[val]acc: ', acc)
-#     return acc
 
 def test(args, net_model, model_path=None):
     if model_path is not None:
