@@ -8,3 +8,11 @@ timm 0.4.5
 numpy 1.21.6
 scikit-learn 1.0.2
 ```
+## Download Datasets
+Please download the datasets from [Google Drive] and save them into the `data` folder.
+## Running
+### 1 Semantic Alignment
+```
+cd SemAlign
+python ave.py --train python ave.py --train --threshold 0.095
+```
