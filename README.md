@@ -11,7 +11,7 @@ scikit-learn 1.0.2
 ## Download Datasets
 Please download the datasets from [Google Drive] and save them into the `data` folder.
 ## Running
-### 1 Semantic Alignment
+### 1. Semantic Alignment
 ```
 cd SemAlign
 python ave.py --train --threshold=0.095
@@ -27,4 +27,12 @@ python tva-triplets.py --status train --kgc_mode three_modality --threshold=0.09
 * Testing TMMKG Generation
 ```
 python tva-triplets.py --status test --kgc_mode three_modality --threshold=0.095 --entity_threshold=0.40
+```
+### 2. TMMLP
+```
+cd TMMLP
+- Train:
+>  CUDA_VISIBLE_DEVICES=0 python fully_supervised_main.py --model_name PSP --threshold=0.099 --train
+- Test:
+>  CUDA_VISIBLE_DEVICES=0 python fully_supervised_main.py --model_name PSP --threshold=0.099 --trained_model_path ./model/PSP_fully.pt
 ```
