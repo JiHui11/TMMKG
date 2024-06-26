@@ -53,6 +53,8 @@ def train(args, net_model, optimizer):
     print('nb_batch:', nb_batch)
     epoch_l = []
     best_test_acc = 0
+    if not os.path.exists(args.sav_dir):
+        os.makedirs(args.sav_dir)
     for epoch in range(args.nb_epoch):
         net_model.train()
         epoch_loss = 0
@@ -119,9 +121,6 @@ def train(args, net_model, optimizer):
 
         print("=== Epoch {%s}   lr: {%.6f} | Loss: [{%.4f}] loss_cls: [{%.4f}] | loss_frame: [{%.4f}] | training_acc {%.4f}" \
             % (str(epoch), optimizer._optimizer.param_groups[0]['lr'], (epoch_loss) / n, epoch_loss_cls/n, epoch_loss_avps/n, acc))
-        
-        if not os.path.exists(args.sav_dir):
-            os.makedirs(args.sav_dir)
         if epoch % args.check_epoch == 0 and epoch != 0:
             test_acc = test(args, net_model)
             print('test accuracy:', test_acc, 'epoch=', epoch)
