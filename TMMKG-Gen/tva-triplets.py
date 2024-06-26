@@ -99,19 +99,14 @@ def generate_TMMKG(args, net_model):
     print(len(gt_triplets))
     
     output_file_path = f'../data/tva_triples_{args.status}.json'
-
     with open(output_file_path, 'w') as json_file:
         json.dump(tva_triplets, json_file, indent=4)
-
-    print(f"JSON 文件已保存到 {output_file_path}")
+    print(f"JSON file has been saved to {output_file_path}")
 
     output_file_path1 = f'../data/gt_triples_{args.status}.json'
-
     with open(output_file_path1, 'w') as file:
         json.dump(gt_triplets, file, indent=4)
-
-    print(f"JSON 文件已保存到 {output_file_path1}")
-
+    print(f"JSON file has been saved to {output_file_path1}")
 
 def extract_dynamic_knowledge_graph(filename_a, filename_v, selected_time_segments, word_embeddings,
                                         all_text_triples, all_visual_triples, all_gt_triples, args):
