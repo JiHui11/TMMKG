@@ -31,8 +31,8 @@ python tva-triplets.py --status test --kgc_mode three_modality --threshold=0.095
 ### 2. TMMLP
 ```
 cd TMMLP
-- Train:
+* Train:
 >  CUDA_VISIBLE_DEVICES=0 python fully_supervised_main.py --model_name PSP --threshold=0.099 --train
-- Test:
+* Test:
 >  CUDA_VISIBLE_DEVICES=0 python fully_supervised_main.py --model_name PSP --threshold=0.099 --trained_model_path ./model/PSP_fully.pt
 ```
