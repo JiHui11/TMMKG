@@ -21,8 +21,6 @@ parser.add_argument('--dir_order_test', type=str, default='../data/test_set.pkl'
 parser.add_argument('--batch_size', type=int, default=100, help='number of batch size')
 parser.add_argument('--threshold', type=float, default=0.095, help='key-parameter for pruning process')
 parser.add_argument('--entity_threshold', type=float, default=0.40, help='threshold for entity alignment process')
-parser.add_argument('--audios-dir', type=str, default='../data/audios-2000', help='audios')
-parser.add_argument('--videos-dir', type=str, default='../data/videos-2000', help='videos')
 parser.add_argument('--checkpoint_path', type=str, default='../data/best_audio_model-0.197583.pth', help="the best ast model")
 parser.add_argument('--label_csv', type=str, default='../data/labels.csv', help="types of audio labels")
 parser.add_argument('--split_audios_folder', type=str, default='../extract_audios', help="split_audios_folder")
