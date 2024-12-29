@@ -19,7 +19,7 @@ cd SemAlign
 python ave.py --train --threshold=0.095
 ```
 
-### Generate Temporal Visual Knowledge Graphs and Audio Labels
+### 2. Generate Temporal Visual Knowledge Graphs and Audio Labels
 1. **Temporal Visual Knowledge Graphs**  
    Use  **[STTran](https://github.com/yrcong/STTran)** to generate the following files:
    - `train_video.json`
@@ -31,15 +31,18 @@ python ave.py --train --threshold=0.095
      
 Save all the generated files into the `data` folder.
 
-### 2. TMMKG Generation
+### 3. TMMKG Generation
+
+To generate the **Temporal Multi-Modal Knowledge Graphs (TMMKG)**, follow the steps below:
+
 ```
 cd TMMKG-Gen
 ```
-* Training TMMKG Generation
+* To generate TMMKG of the training data, run the following command:
 ```
 python tva-triplets.py --status train --kgg_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
-* Testing TMMKG Generation
+* To generate TMMKG of the testing data, run the following command:
 ```
 python tva-triplets.py --status test --kgg_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
