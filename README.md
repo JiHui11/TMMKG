@@ -46,7 +46,7 @@ python tva-triplets.py --status train --kgg_mode three_modality --threshold=0.09
 ```
 python tva-triplets.py --status test --kgg_mode three_modality --threshold=0.095 --entity_threshold=0.40
 ```
-### 3. TMMLP
+### 4. TMMLP
 ```
 cd TMMLP
 ```
