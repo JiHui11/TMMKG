@@ -18,6 +18,18 @@ Please download the datasets from [阿里云盘](https://www.alipan.com/s/rud3C1
 cd SemAlign
 python ave.py --train --threshold=0.095
 ```
+
+### Generate Temporal Visual Knowledge Graphs and Audio Labels
+1. **Temporal Visual Knowledge Graphs**  
+   Use **STTran** to generate the following files:
+   - `train_video.json`
+   - `test_video.json`
+
+2. **Temporal Audio Labels**  
+   Use **AST** to generate the audio classification model:
+   - `best_audio_model.pth`
+Save all the generated files into the `data` folder.
+
 ### 2. TMMKG Generation
 ```
 cd TMMKG-Gen
