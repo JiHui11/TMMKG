@@ -58,3 +58,4 @@ python main.py --train --nb_epoch=30
 ```
 python main.py --model_path ./kgc_models/best_model.tar
 ```
+## Citation
