@@ -59,3 +59,15 @@ python main.py --train --nb_epoch=30
 python main.py --model_path ./kgc_models/best_model.tar
 ```
 ## Citation
+If our work is helpful for your research, please consider to give us a star and cite our paper:
+```script
+@article{li2025temporal,
+  title={Temporal multi-modal knowledge graph generation for link prediction},
+  author={Li, Yuandi and Ji, Hui and Yu, Fei and Cheng, Lechao and Che, Nan},
+  journal={Neural Networks},
+  volume={185},
+  pages={107108},
+  year={2025},
+  publisher={Elsevier}
+}
+```
