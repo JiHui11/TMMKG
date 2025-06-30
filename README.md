@@ -1,4 +1,4 @@
-# TMMKG
+# Temporal Multi-Modal Knowledge Graph Generation for Link Prediction
 the repository is the implementation of TMMKG
 ## Requirements
 ```
