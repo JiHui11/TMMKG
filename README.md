@@ -12,6 +12,7 @@ pydub 0.25.1
 ```
 ## Download Datasets
 Please download the datasets from [百度云盘](https://pan.baidu.com/s/1YtJfDbjX8S6CXgqQj2UqLA?pwd=y3we). and save them into the `data` folder.
+The raw videos are also available at [here](https://pan.baidu.com/s/1YtJfDbjX8S6CXgqQj2UqLA?pwd=y3we).
 ## Running
 ### 1. Semantic Alignment
 ```
