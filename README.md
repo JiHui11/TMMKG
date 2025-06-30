@@ -1,5 +1,5 @@
 # Temporal Multi-Modal Knowledge Graph Generation for Link Prediction
-the repository is the implementation of TMMKG
+We propose a temporal multi-modal knowledge graph generation model designed to handle videos, corresponding audio, and captions captured in indoor environments. 
 ## Requirements
 ```
 Python 3.7
