@@ -11,7 +11,7 @@ imageio 2.31.2
 pydub 0.25.1
 ```
 ## Download Datasets
-Please download the datasets from [阿里云盘](https://www.alipan.com/s/939eFaK2ygg). and save them into the `data` folder.
+Please download the datasets from [百度云盘](https://pan.baidu.com/s/1YtJfDbjX8S6CXgqQj2UqLA?pwd=y3we). and save them into the `data` folder.
 ## Running
 ### 1. Semantic Alignment
 ```
